@@ -1,14 +1,14 @@
-defmodule Zoho.Deals do
+defmodule ZohoCRM.Deals do
   
   @loc "SalesOrders"
-  @resource Zoho.Deal
+  @resource ZohoCRM.Deal
   
-  use Zoho.Resource
+  use ZohoCRM.Resource
 
 
   #clean up strange data format
   def get_clean do
-     data = Zoho.Deals.get
+     data = ZohoCRM.Deals.get
 
      top = data.response["result"]["Deals"]["row"]
      if is_list top do

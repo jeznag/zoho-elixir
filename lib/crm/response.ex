@@ -1,9 +1,9 @@
-defmodule Zoho.Response do
+defmodule ZohoCRM.Response do
 
-  @type t :: %Zoho.Response{
+  @type t :: %ZohoCRM.Response{
     status_code: number,
     data: term,
-    raw_response: Zoho.Response.http_potion_response
+    raw_response: ZohoCRM.Response.http_potion_response
   }
   @type http_potion_response :: %{
     status_code: number,
@@ -15,23 +15,23 @@ defmodule Zoho.Response do
             raw_response: nil,
             status_code: nil
 
-  @spec new(HTTPotion.Response) :: Zoho.Response | {:error, term}
+  @spec new(HTTPotion.Response) :: ZohoCRM.Response | {:error, term}
   def new(response) do
     new(response, %{})
   end
 
-  @spec new(HTTPotion.Response, map) :: Zoho.Response | {:error, term}
+  @spec new(HTTPotion.Response, map) :: ZohoCRM.Response | {:error, term}
   def new(response, options) do
     case parse_body(response, options) do
       {:ok, data} ->
-        %Zoho.Response{ data: data, raw_response: response, status_code: response.status_code }
+        %ZohoCRM.Response{ data: data, raw_response: response, status_code: response.status_code }
       {:error, error} ->
         {:error, error}
     end
   end
 
   defp parse_body(request, options) do
-    case Jazz.decode(request.body) do
+    case JSON.decode(request.body) do
       {:ok, data} ->
         if success? request do
           {:ok, cast_data(data, options)}
@@ -42,7 +42,7 @@ defmodule Zoho.Response do
         {:error, error_message}
     end
   end
-  @spec success?(Zoho.Response.http_potion_response) :: boolean
+  @spec success?(ZohoCRM.Response.http_potion_response) :: boolean
   defp success?(response) do
     HTTPotion.Response.success? response
   end
@@ -58,7 +58,7 @@ defmodule Zoho.Response do
   # :__struct__ key
   defp cast_data(data, %{as: as_struct}) when is_map(data) do
     struct_keys = Map.keys(as_struct.__struct__) |> List.delete(:__struct__)
-    struct(as_struct, Zoho.Utils.safe_atomize_keys(data, struct_keys))
+    struct(as_struct, ZohoCRM.Utils.safe_atomize_keys(data, struct_keys))
   end
 
   # For lists, loop over them and cast their members

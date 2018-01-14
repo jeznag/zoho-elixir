@@ -1,9 +1,9 @@
-defmodule Zoho.Accounts do
+defmodule ZohoCRM.Accounts do
   
   @loc "Accounts"
-  @resource Zoho.Account
+  @resource ZohoCRM.Account
 
-  use Zoho.Resource
+  use ZohoCRM.Resource
 
 
   #get example map for Accounts post
@@ -22,7 +22,7 @@ defmodule Zoho.Accounts do
 
   #clean up strange data format
   def get_clean do
-     data = Zoho.Accounts.get
+     data = ZohoCRM.Accounts.get
 
      top = data.response["result"]["Accounts"]["row"]
      if is_list top do

@@ -1,4 +1,4 @@
-defmodule Zoho.Resource do
+defmodule ZohoCRM.Resource do
   defmacro __using__(_) do
     quote location: :keep do
       @resource Module.get_attribute(__MODULE__, :resource) || nil
@@ -22,8 +22,8 @@ defmodule Zoho.Resource do
 
       def raw_get(params\\%{}) do
         build_path(endpoint(), params)
-        |> Zoho.get
-        |> Zoho.Response.new(%{as: @resource()})
+        |> ZohoCRM.get
+        |> ZohoCRM.Response.new(%{as: @resource()})
       end
 
       def insert(params\\%{}) do
@@ -32,8 +32,8 @@ defmodule Zoho.Resource do
 
       def raw_insert(params\\%{}) do
         build_post(@loc, postendpoint(), params)
-        |> Zoho.get #[body: ""]
-        |> Zoho.Response.new(%{as: @resource})
+        |> ZohoCRM.get #[body: ""]
+        |> ZohoCRM.Response.new(%{as: @resource})
       end
 
       defp build_post(loc, path, params) do

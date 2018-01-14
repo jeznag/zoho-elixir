@@ -23,7 +23,7 @@ If you want to make the configuration at runtime I recommend using https://githu
 
 
 Generate your auth token via get request:
-https://accounts.zoho.com/apiauthtoken/nb/create?SCOPE=ZohoCRM/crmapi&EMAIL_ID=[Username/EmailID]&PASSWORD=[Password]&DISPLAY_NAME=[ApplicationName]
+https://accounts.ZohoCRM.com/apiauthtoken/nb/create?SCOPE=ZohoCRM./crmapi&EMAIL_ID=[Username/EmailID]&PASSWORD=[Password]&DISPLAY_NAME=[ApplicationName]
 
 Get dependencies:
 mix deps.get
@@ -35,9 +35,9 @@ Try it from iex:
 iex -S mix
 
 ```Elixir
-Zoho.start
+ZohoCRM.start
 
-leads = Zoho.Leads.get
+leads = ZohoCRM.Leads.get
 
 List.first (leads.response["result"]["Leads"]["row"])
   #  %{"FL" => [%{"content" => "2223345000000110264", "val" => "LEADID"},
@@ -65,7 +65,7 @@ List.first (leads.response["result"]["Leads"]["row"])
   #   %{"content" => "2016-11-26 10:32:15", "val" => "Last Activity Time"}],
   #  "no" => "1"}
 
-leads = Zoho.Leads.get_clean
+leads = ZohoCRM.Leads.get_clean
 
   #[%{"Annual Revenue" => "1313131313", "Company" => "fafaf",
   #   "Created By" => "Wyatt Benno", "Created Time" => "2016-11-26 10:32:15",
@@ -93,16 +93,16 @@ leads = Zoho.Leads.get_clean
   #   "SMCREATORID" => "2223345000000109005", "SMOWNERID" => "2223345000000109005",
   #   "State" => "tokyo", "Street" => "test address"}]
 
-example = Zoho.Leads.get_example
+example = ZohoCRM.Leads.get_example
 
   #%{Company: "Your Company", Email: "testing@testing.com", Fax: "222",
   #  "First Name": "Hannah", "Home Phone": "0987654321", "Last Name": "smith",
   #  "Lead Source": "Web Download", Mobile: "123", "Other Phone": "111",
   #  Phone: "1234567890", Title: "Manager"}
 
-Zoho.Leads.insert example
+ZohoCRM.Leads.insert example
 
-  #%Zoho.Lead{response: %{"result" => %{"message" => "Record(s) added successfully",
+  #%ZohoCRM.Lead{response: %{"result" => %{"message" => "Record(s) added successfully",
   #{}"recorddetail" => %{"FL" => [%{"content" => "2223345000000114021",
   #      "val" => "Id"},
   #    %{"content" => "2016-11-27 12:54:01", "val" => "Created Time"},

@@ -1,4 +1,4 @@
-defmodule Zoho do
+defmodule ZohoCRM do
   use HTTPotion.Base
 
   @spec process_url(String.t) :: String.t

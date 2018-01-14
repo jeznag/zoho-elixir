@@ -1,8 +1,8 @@
-defmodule Zoho.Leads do
+defmodule ZohoCRM.Leads do
 
   @loc "Leads"
-  @resource Zoho.Lead
-  use Zoho.Resource
+  @resource ZohoCRM.Lead
+  use ZohoCRM.Resource
 
 
   #get example map for Leads post
@@ -25,7 +25,7 @@ defmodule Zoho.Leads do
 
   #clean up strange data format
   def get_clean do
-     data = Zoho.Leads.get
+     data = ZohoCRM.Leads.get
 
      top = data.response["result"]["Leads"]["row"]
      if is_list top do

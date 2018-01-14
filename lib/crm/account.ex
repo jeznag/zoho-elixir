@@ -1,9 +1,9 @@
-defmodule Zoho.Account do
+defmodule ZohoCRM.Account do
   @moduledoc """
   The Struct and type definition for a Zoho Accounts
   """
 
-  @type t :: %Zoho.Account{
+  @type t :: %ZohoCRM.Account{
                       response: %{}
   }
 

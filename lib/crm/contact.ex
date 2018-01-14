@@ -1,9 +1,9 @@
-defmodule Zoho.Contact do
+defmodule ZohoCRM.Contact do
   @moduledoc """
   The Struct and type definition for a Zoho Contacts
   """
 
-  @type t :: %Zoho.Contact{
+  @type t :: %ZohoCRM.Contact{
                       response: %{}
   }
 

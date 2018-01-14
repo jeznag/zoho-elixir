@@ -1,4 +1,4 @@
-defmodule Zoho.Utils do
+defmodule ZohoCRM.Utils do
 
   @spec safe_atomize_keys(map, list(atom)) :: map
   @doc """

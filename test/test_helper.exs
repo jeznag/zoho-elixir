@@ -1,2 +1,2 @@
-Zoho.start
+ZohoCRM.start
 ExUnit.start()
