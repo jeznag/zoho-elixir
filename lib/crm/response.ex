@@ -31,7 +31,7 @@ defmodule ZohoCRM.Response do
   end
 
   defp parse_body(request, options) do
-    case JSON.decode(request.body) do
+    case Poison.decode(request.body) do
       {:ok, data} ->
         if success? request do
           {:ok, cast_data(data, options)}
